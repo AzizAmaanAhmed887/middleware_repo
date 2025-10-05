@@ -17,11 +17,6 @@ const checkToken = (req, res, next) => {
     }
 };
 
-// wrong path
-app.get("/wrong", (req, res) => {
-    res.send("error");
-})
-
 app.get("/api", checkToken, (req, res) => {
     res.send("data send from api");
 });
@@ -35,6 +30,11 @@ app.get("/login", (req, res) => {
     // Login route
     res.send("Login route");
 });
+
+// wrong path
+app.get("/wrong", (req, res) => {
+    res.send("error");
+})
 
 // path does not exist
 app.use((req, res) => {
