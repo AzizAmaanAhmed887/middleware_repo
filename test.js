@@ -31,17 +31,26 @@ app.get("/login", (req, res) => {
     res.send("Login route");
 });
 
-// wrong path
-app.get("/wrong", (req, res) => {
-    res.send("error");
+//Custom error handling middleware
+app.get("/err",(req,res)=>{
+    abcd =abcd;
+})
+
+app.use((err,req,res,next)=>{
+    console.log("------- Error -------")
+    next(err);
+})
+
+app.use((err,req,res,next)=>{
+    console.log("------- Error2 middleware -------")
+    next(err);
 })
 
 // path does not exist
-app.use((req, res) => {
-    res.status(404).send("Invalid path");
-});
+// app.use((req, res) => {
+//     res.status(404).send("Invalid path");
+// });
 
-// Start the server
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Server is running at: http://localhost:${PORT}`);
